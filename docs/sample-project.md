@@ -401,7 +401,6 @@ stages:
     title: Create Pets from CSV
     after: auth
     steps:
-      - data: pets_csv
       - for: const pet of pets_csv
         steps:
           - call: create

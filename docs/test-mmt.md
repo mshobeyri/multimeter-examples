@@ -448,12 +448,6 @@ Notes:
 - Values can be strings (template strings supported) or non-string literals.
 - When running a suite, setenv events are still emitted but may be scoped to the top-level run behavior.
 
-### data
-Bind an imported CSV alias (from the test's import section) into scope for use in loops and steps.
-```yaml
-- data: users   # where import:
-                #   users: ./users.csv
-```
 
 ## Stage condition
 Stages support a `condition` field that skips the stage if the condition evaluates to false. The condition uses the same syntax as `assert`/`check` inline expressions.

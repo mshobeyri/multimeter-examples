@@ -343,7 +343,6 @@ Where a Step is one of:
 - js: string
 - print: string
 - set | var | const | let: record<string, any>
-- data: string
 - setenv: record<string, any>
 - run: string
 
