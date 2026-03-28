@@ -25,7 +25,7 @@ Shows how to **chain API calls** — the output of one call feeds into the next.
 
 - **Output chaining** — `${step_id.output_name}` references a previous call's output in a later step's inputs.
 - **`set`** — stores values in named variables for reuse across steps.
-- **`setenv`** — promotes a runtime value to an environment variable so downstream calls can use `e:VAR` or `<<e:VAR>>`.
+- **`setenv`** — promotes a runtime value to an environment variable so downstream calls can use `e:var` or `<<e:var>>`.
 - **Inline `expect`** — validates outputs directly on a `call` step without a separate `assert`/`check`. Non-throwing — logs failures but continues.
 
 ## How to use
