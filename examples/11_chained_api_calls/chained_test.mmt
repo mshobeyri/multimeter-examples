@@ -7,6 +7,9 @@ import:
 inputs:
   username: alice@example.com
   password: secret123
+outputs:
+  session_token: ""
+  user_id: ""
 steps:
   - call: login
     id: auth
@@ -16,10 +19,10 @@ steps:
     expect:
       token: != null
   - set:
-      session_token: ${auth.token}
-      user_id: ${auth.user_id}
+      outputs.session_token: ${auth.token}
+      outputs.user_id: ${auth.user_id}
   - setenv:
-      AUTH_TOKEN: ${auth.token}
+      auth_token: ${auth.token}
   - call: getProfile
     inputs:
       token: ${session_token}
