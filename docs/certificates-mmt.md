@@ -28,7 +28,8 @@ openssl pkcs12 -in bundle.pfx -nocerts -out client.key
 ```yaml
 type: env
 variables:
-  API_URL: "https://api.example.com"
+  api_url:
+    - "https://api.example.com"
 
 certificates:
   # CA Certificates (multiple paths supported)
