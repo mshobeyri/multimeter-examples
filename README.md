@@ -1,91 +1,202 @@
-<br />
 <div align="center">
   <a href="https://mmt.dev">
-    <img src="res/logo.png" alt="Logo" width="120" height="115">
+    <img src="res/logo.png" alt="Logo" width="115" height="115">
   </a>
-  <p align="center">
-    <h4>All possible tests for your service as code!</h4>
-    <br />
-    <a href="#-documentation"><strong>Explore the docs »</strong></a>
-    <br />
-    <br />
-      <a href="https://github.com/mshobeyri/multimeter/blob/master/docs/demos.md"><img src="res/demo.png" alt="Demo" width="16" height="16" style="vertical-align: text-bottom;"/> View Demo</a>
+  <h4> Start with a request. Grow into a testing platform. Never switch tools.</h4>
+  <p>
+    <a href="https://marketplace.visualstudio.com/items?itemName=mshobeyri.multimeter">
+      <img src="https://vsmarketplacebadges.dev/installs-short/mshobeyri.multimeter.svg" alt="VS Code Installs"/>
+    </a>
+    <a href="https://marketplace.visualstudio.com/items?itemName=mshobeyri.multimeter">
+      <img src="https://vsmarketplacebadges.dev/version-short/mshobeyri.multimeter.svg" alt="Version"/>
+    </a>
+    <a href="https://github.com/mshobeyri/multimeter/blob/main/LICENSE.md">
+      <img src="https://img.shields.io/badge/license-BSL-green" alt="License"/>
+    </a>
+    <a href="https://github.com/mshobeyri/multimeter/stargazers">
+      <img src="https://img.shields.io/github/stars/mshobeyri/multimeter?style=social" alt="GitHub Stars"/>
+    </a>
+  </p>
+  <p>
+    <a href="https://mmt.dev/demos"><img src="res/demo.png" alt="Demo" width="16" height="16" style="vertical-align: text-bottom;"/> View Demo</a>
     &middot;
-      <a href="https://github.com/mshobeyri/multimeter/issues/new?labels=enhancement&template=feature-request---.md"><img src="res/request_feature.png" alt="Request Feature" width="16" height="16" style="vertical-align: text-bottom;"/> Request Feature</a>
+    <a href="https://mmt.dev"><img src="res/website.png" alt="mmt.dev" width="16" height="16" style="vertical-align: text-bottom;"/> Website</a>
+    &middot;
+    <a href="https://github.com/mshobeyri/multimeter/issues/new?labels=enhancement&template=feature-request.md"><img src="res/request_feature.png" alt="Request Feature" width="16" height="16" style="vertical-align: text-bottom;"/> Request Feature</a>
   </p>
 </div>
 
-**Multimeter** simplifies the process of writing, running, and managing structured HTTP/WebSocket tests directly within Visual Studio Code. The idea is coming from the Docker world, where the complexity of managing machines is now simple YAML files. Here also, tests will be stored in your application's repository as version-controlled YAML-based files.
-## Getting started
+<img src="res/api.gif" alt="Multimeter in action" style="max-width: 100%; height: auto;" />
+
+
+
+## 🚀 The simplicity of Bruno. The power of Postman.
+
+**Multimeter** combines the simplicity of Git-native tools with the power of a complete API testing platform.
+
+Start with a single HTTP request.
+
+Grow into tests, suites, mocks, reports, auto-generated documentation, and CI workflows when you need them.
+
+All in the same tool. No migration required.
+
+## 😩 Tired of fighting your API testing tools?
+
+
+### Coming from Postman?
+
+- ✅ Powerful ecosystem
+- ✅ Rich API tooling
+- ✅ Collaboration features
+
+- ❌ Huge collections
+- ❌ JavaScript test scripts everywhere
+- ❌ CI pipelines behaving differently than local runs
+- ❌ Environment sprawl
+- ❌ Tests tied to a platform
+- ❌ Hidden state scattered across workspaces
+
+### Coming from Bruno?
+
+- ✅ Git-native
+- ✅ Lightweight
+- ✅ Simple
+
+- ❌ Repeated request definitions
+- ❌ Multi-step API workflows
+- ❌ Large test suites
+- ❌ Keeping mocks in sync
+- ❌ CI reports
+- ❌ Generated documentation
+
+## 🎯 Why Multimeter?
+
+
+**Everything developers love about Bruno**
+
+- ✅ Git-native
+- ✅ File-based
+- ✅ Lightweight
+- ✅ No cloud lock-in
+
+**Everything teams eventually need as projects grow**
+
+- ✅ API testing
+- ✅ Test suites
+- ✅ Mock servers
+- ✅ Documentation
+- ✅ Reports
+- ✅ CI workflows
+
+**Without switching tools. Without the usual tradeoff.**
+
+| Tool | Tradeoff |
+|--------|--------|
+| Postman | Powerful but heavy |
+| Bruno | Simple but limited |
+| Multimeter | Simple by default. Powerful when needed. |
+
+[See all features →](https://mmt.dev/#features)
+
+
+## ⚡ Start simple
+
+Multimeter is a VS Code-native extension. All you need:
+- Click Install button in [Multimeter VS Code Extension](https://marketplace.visualstudio.com/items?itemName=mshobeyri.multimeter)
+- Create a `.mmt` file
+- Type:
 
 ```yaml
 type: api
-protocol: http
-url: http://localhost:8080
-method: post
-format: json
-body: 
-  username: mehrdad
-  password: 123456
+url: https://test.mmt.dev/echo
+method: get
 ```
-</br>
-Here is a how you can run the test in VSCode;
-</br></br>
-<img src="res/api.gif" alt="Multimeter sample post" style="max-width: 100%; height: auto;" />
-</br></br>
 
-## 🤔 Why Multimeter?
+That's enough.
 
-- 💰 **The extention is free and remains free** — no paywalls, no limitation.
-- 👤 **Zero setup friction.** No login or account needed — your Git repo controls access.  
-- 🦾 **Generate tests automatically.** Ask AI to build tests, refine your code, deploy and run until everything passes.  
-- 🌈 **One tool instead of many.** Replace Postman, JMeter, NeoLoad, Robot Framework etc. — no juggling of tools.  
-- 🪞 **Instant mock servers.** Built-in HTTP / WebSocket mock server lets you simulate responses quickly (ideal for edge-cases).  
-- 🔄 **Seamless migration support.** Already have Postman collections or OpenAPI specs? Convert them to Multimeter tests without rewriting.  
-- 📄 **Auto-generated API docs.** Produce clean HTML or Markdown API docs from your tests — always up to date.  
-- 🪢 **Reusable & modular tests.** Write once — reuse elsewhere with different inputs, like calling a function.  
-- 📦 **Versioned tests alongside code.** Tests live in the same repo and can be updated in the same pull request — you retain ability to test older versions.  
-- 🖌️ **Easy bulk edits.** Want to update many tests at once? Use VS Code’s “Replace All” instead of manual edits.  
-- ⏳ **Full test history.** Store test results in your repo so you always have access to past runs.  
-- 👮‍♂️ **Your data stays yours — secure & private.** Sensitive info stays in your repo; nothing is uploaded externally.  
-- 🎛️ **No coding skills needed.** Modern graphical UI lets even non-coders create and run tests.  
-- ⛓️ **CI/CD ready.** Integrate with your pipeline via `testlight` to automatically run tests before merging — ensuring quality before merge.  
+- No suites.
+- No mocks.
+- No workflows.
+- No complexity.
 
-## 🚀 (Some Of) Features' Demo
 
- - 🧩 UI editor ( No code mode ) along with text editor. <a href="https://github.com/mshobeyri/multimeter/blob/master/docs/demos.md#ui-overview"><img src="https://img.shields.io/badge/►-demo-green?style=flat-square" height="14" /></a>
- - 🤖 Generate tests using AI (Multimeter assistant). <a href="https://github.com/mshobeyri/multimeter/blob/master/docs/demos.md#ai-test-generation"><img src="https://img.shields.io/badge/►-demo-green?style=flat-square" height="14" /></a>
- - 🧱 JSON/XML schema-aware formating and editing. <a href="https://github.com/mshobeyri/multimeter/blob/master/docs/demos.md#xml-handling"><img src="https://img.shields.io/badge/►-demo-green?style=flat-square" height="14" /></a>
- - 🔗 Chaining request responses. <a href="https://github.com/mshobeyri/multimeter/blob/master/docs/demos.md#output-extraction"><img src="https://img.shields.io/badge/►-demo-green?style=flat-square" height="14" /></a>
- - 🗄 Environment variable and presets support. <a href="https://github.com/mshobeyri/multimeter/blob/master/docs/demos.md#environment-variables"><img src="https://img.shields.io/badge/►-demo-green?style=flat-square" height="14" /></a>
- - ⛏️ Extract data from results using xpath, jsonpath and regular expression. <a href="https://github.com/mshobeyri/multimeter/blob/master/docs/demos.md#output-extraction"><img src="https://img.shields.io/badge/►-demo-green?style=flat-square" height="14" /></a>
- - 🌐 REST, WEBSOCKET, SOAP protocols support. <a href="https://github.com/mshobeyri/multimeter/blob/master/docs/demos.md#websocket-testing"><img src="https://img.shields.io/badge/►-demo-green?style=flat-square" height="14" /></a>
- - 🔄 Support Postman and OpenAPI collection convert. <a href="https://github.com/mshobeyri/multimeter/blob/master/docs/demos.md#postman-import"><img src="https://img.shields.io/badge/►-demo-green?style=flat-square" height="14" /></a>
- - 🪞 Server mocking. <a href="https://github.com/mshobeyri/multimeter/blob/master/docs/demos.md#mock-server"><img src="https://img.shields.io/badge/►-demo-green?style=flat-square" height="14" /></a>
- - 📃 Auto documentation: generate HTML and MD docs from API. <a href="https://github.com/mshobeyri/multimeter/blob/master/docs/demos.md#documentation-generation"><img src="https://img.shields.io/badge/►-demo-green?style=flat-square" height="14" /></a>
+## 🧪 Need tests?
 
- <a href="https://github.com/mshobeyri/multimeter/blob/master/docs/demos.md" >
-  ▸ See ALL Demos!
-</a>
+```yaml
+type: test
+steps:
+  - http: https://test.mmt.dev/echo
+    method: get
+    expect:
+      status: 200
+```
 
-## 🎯 Upcoming Features
-- 🏋 Load testing.
+- Still simple.
+- Still Git-native.
+- Still easy to review.
 
-## 📚 Documentation
-- [MMT Overview](docs/mmt-overview.md)
-  - [API](docs/api-mmt.md)
-  - [Test](docs/test-mmt.md)
-  - [Environment](docs/environment-mmt.md)
-  - [Doc](docs/doc-mmt.md)
-  - [Suite](docs/suite-mmt.md)
-- [Sample Project](docs/sample-project.md) — full walkthrough with APIs, tests, suites, docs, and CLI
-- [Testlight (CLI)](docs/testlight.md)
-- [Convertor](docs/convertor.md)
-- [Mock Server](docs/mock-server.md)
-- [History](docs/history.md)
-- [Test Generation Profile(cheat sheet)](docs/testgen-profile.md)
 
-## 💬 Communcations
-- [Trello](https://trello.com/invite/b/696e9c5c2f58a795c49a2f09/ATTI82216d5bd7d640679502ecc972eeea7a169DFB32/multimeter)
-- [Teams](https://teams.live.com/l/community/FEAfSabmdjSjkKgCAI)
-- [Contanct](mehrdad.shobeyri@gmail.com)
+## 🚀 Scale without switching tools
+
+As your project grows, Multimeter grows with it.
+
+Add:
+
+- Test suites
+- Mock servers
+- Documentation
+- Workflow execution
+- Structured reporting
+- CI artifacts
+
+**Only when you need them.**
+
+Everything stays in the same ecosystem.
+
+[See all examples →](./examples)
+
+
+## 🔁 Built for reliable CI
+
+Multimeter validates test definitions before execution.
+
+That means:
+
+- ✅ Earlier feedback
+- ✅ More deterministic execution
+- ✅ Fewer surprises in CI
+- ✅ Easier debugging
+- ✅ Reproducible results
+
+
+## 📦 Everything stays in Git
+
+Your code, tests, mocks, documentation, reports, and environment settings live in the same repository.
+
+- ✅ Version controlled
+- ✅ Code and tests evolve together
+- ✅ Reviewable through pull requests
+- ✅ Easy to move and share
+- ✅ No platform lock-in
+- ✅ AI can update code and tests together
+- ✅ Environment variables never go missing
+- ✅ Historical test results stay with the project
+
+
+## 🧠 Philosophy
+
+Most API tools focus on requests.
+
+Multimeter focuses on behavior.
+
+Instead of asking:
+
+> "Did this request return the expected response?"
+
+Multimeter helps you answer:
+
+> "Does this system still behave correctly?"
+
+---
+
+[Demos](https://mmt.dev/demos) · [Documentation](./docs/toc.md) · [Website](https://mmt.dev) · [GitHub](https://github.com/mshobeyri/multimeter)

@@ -25,7 +25,7 @@ You can use these fields for documentation and to help with searching and filter
 - `tags`: An array of strings to categorize the suite.
 
 ### tests
-The `tests` property is an array of strings, where each string is a path to a `.mmt` file. A suite can run any combination of APIs, tests, or even other suites.
+The `tests` property is an array of strings, where each string is a path to a `.mmt`, `.http`, `.https`, or `.bru` file. A suite can run any combination of APIs, tests, HTTP files, Bruno files, or other suites.
 
 Paths can be:
 - **Relative** to the suite file's location (e.g., `../tests/login.mmt`)
@@ -35,11 +35,14 @@ Paths can be:
 tests:
   - ../apis/login.mmt
   - ../tests/login_and_get_user_info.mmt
+  - ../requests/profile.http
   - +/tests/shared/setup.mmt           # project root import
   - ../suites/smoke_tests.mmt
 ```
 
 See [Environment — Project Root Marker](./environment-mmt.md#project-root-marker) for details on setting up `multimeter.mmt`.
+
+When converting larger Postman collections, Multimeter generates `multimeter.mmt` and uses `+/` paths in generated tests and suites so files can move within the generated project without breaking imports.
 
 ### Sequential and Parallel Execution
 By default, all tests listed in the `tests` array will run in parallel. To control the flow and run tests in sequential stages, use `then` to separate the groups of tests. All tests between `then` separators form a group that runs in parallel. The groups themselves run sequentially, one after the other.
@@ -256,6 +259,7 @@ This design prevents conflicts when suites are composed hierarchically.
 ## See also
 - [Test](./test-mmt.md) — define test flows that suites can run
 - [API](./api-mmt.md) — define APIs that suites can run directly
+- [Load Test](./loadtest-mmt.md) — run one test scenario repeatedly under load (beta)
 - [Mock Server](./mock-server.md) — define mock servers to include in suites
 - [Environment](./environment-mmt.md) — variables and presets, including `+/` project root imports
 - [Reports](./reports.md) — generate test reports from suite runs

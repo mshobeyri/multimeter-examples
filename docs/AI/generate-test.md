@@ -31,12 +31,6 @@ inputs:                         # input variables with default values
 outputs:                        # top-level outputs for this test
   <name>: string                # expression or literal
 
-metrics:                        # optional performance/load hints
-  repeat?: string | number      # e.g. "10" or "inf"
-  threads?: number
-  duration?: string             # "10s", "1m", "2h", "inf"
-  rampup?: string               # same units as duration
-
 steps:                          # linear flow of steps (no stages)
   - <step>
 
@@ -67,6 +61,8 @@ Supported step forms:
   inputs?:                      # passed as JSON object
     <name>: <value>
   expect?:                      # inline assertions (shorthand for assert)
+    <field>: <value>
+  debug?:                       # inline debug inspections (same syntax as expect, never fails)
     <field>: <value>
   report?: all | fails | none   # controls reporting level
 
@@ -118,7 +114,10 @@ Supported step forms:
 - let:
     <name>: <value>
 
-# 13) setenv: promote values into environment variables
+# 13) data: bind CSV alias (from import)
+- data: <alias>
+
+# 14) setenv: promote values into environment variables
 - setenv:
     <env_name>: <value>       # e.g. token: ${loginStep.token}
 ```
@@ -134,26 +133,33 @@ Beyond the basic `call`, `id`, and `inputs`, a call step also supports:
   inputs?: { ... }
   expect?:                    # inline assertions on the call result
     <field>: <value>          # e.g. status: 200, body.name: "John"
+  debug?:                     # inline debug inspections (same syntax as expect, never fails)
+    <field>: <value>          # e.g. status: 200, body: ${someVar}
   report?: all | fails | none # controls pass/fail reporting level
 ```
 
 `expect` is a shorthand for common assertions — each key is a dotted path into the response, and the value is compared with `==` by default. You can prefix with an operator (e.g. `>= 1`, `!= null`).
+
+`debug` uses the same syntax as `expect` but never fails the test — it always logs results with a debug icon for troubleshooting. Debug entries are excluded from exported reports.
 
 ---
 
 `<comparison>` is a string expression using operators from `opsList` in `TestData.ts`:
 
 - `<`, `>`, `<=`, `>=`, `==`, `!=`
-- `=@` (is at: actual is found within expected), `!@` (is not at)
+- `=@` (is in: left is contained in right), `!@` (is not in)
+- `=C` (contains: left contains right), `!C` (does not contain)
 - `=^` (starts with), `!^` (not starts with)
 - `=$` (ends with), `!$` (not ends with)
-- `=~` (regex match), `!~` (regex not match)
+- `=*` (regex match), `!*` (regex not match). Legacy `=~` and `!~` still work.
+- `=#` (string/number character length equals), `!#` (not equal)
+- `=N%`(fuzzy match at least N% similar), `!N%` (not fuzzy match at N%). Any whole percent from 0 to 100 can be used, for example `=80%`. In the visual UI these appear as `=%` and `!%` with a separate percentage selector.
 
 Example comparisons:
 
 ```yaml
 - assert: ${login.status} == 200
-- check: ${profile.email} =~ /@example.com$/
+- check: ${profile.email} =* /@example.com$/
 - assert: ${response.body.total} >= 1
 ```
 
@@ -276,6 +282,7 @@ import:
   login: ./login.mmt
 
 steps:
+  - data: users
   - for: const user of users
     steps:
       - call: login
@@ -316,6 +323,5 @@ steps:
 - Prefer small, readable tests focused on a single behavior.
 - Prefer `steps` for simple linear flows; only use `stages` when explicit parallelism is needed.
 - Always include `title` and `tags` (even if tags is a small list like `[smoke]`).
-- Avoid adding `js` steps unless the user needs custom logic that can’t be expressed with other constructs.
-
+- Avoid adding `js` steps unless the user needs custom logic that can’t be expressed with other constructs.- Do **not** add YAML comments (`#`). Multimeter's formatter removes them on reformat, so they will always be lost. Use `title` on steps or the top-level `description` field instead.
 When unsure, generate a **minimal valid test** that clearly calls the described APIs and asserts the most important property (typically HTTP status or a key field in the response).

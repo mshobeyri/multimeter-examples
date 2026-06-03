@@ -44,19 +44,26 @@ Supported token forms in tests and APIs:
 What to use when
 - Use `<<e:VAR>>` when you want substitution anywhere in a string (inside URLs, headers, or other text).
 - Use `e:VAR` only when it appears as the entire value after `: `; types are preserved (numbers, booleans, strings).
+- You can append **accessors** to either form when you need only part of the value:
+  - `<<e:token[0]>>` — first character / item
+  - `<<e:token[0:6]>>` — string or array slice (end-exclusive)
+  - `<<e:user.name>>` — property access
 
 Notes
 - `e:VAR` is not replaced inside plain text like `hi:e:VAR there`; it must follow `: `.
 - `{{VAR}}` is not supported — use `<<e:VAR>>` or `e:VAR` instead.
+- Slice form `[start:end]` uses normal JS `slice(start, end)` semantics.
 
 Examples:
 ```yaml
 url: <<e:api_url>>/login
 headers:
   Authorization: Bearer <<e:token>>
+  X-Token-Prefix: <<e:token[0:6]>>
 body:
   username: e:user
   password: e:pass
+  first_letter: <<e:user[0]>>
 ```
 
 ## Using presets and overrides in CLI
@@ -101,13 +108,13 @@ setenv:
 
 ## Certificates
 
-SSL/TLS certificate settings can be configured in the `certificates` section of the env file. See [Certificates documentation](./certificates-mmt.md) for details on configuring CA certificates, client certificates (mTLS), and SSL validation settings.
+SSL/TLS certificate settings can be configured in the `certificates` section of the env file. See [Certificates documentation](./certificates-mmt.md) for details on configuring the server CA certificate, client certificates (mTLS), and certificate warnings.
 
 ## Reference (types)
 - type: `env`
 - variables: record<string, object (key-value choices) | array (allowed values)>
 - presets: record<string, record<string, record<string, string|number|boolean|null>>>
-- certificates: { ca?, clients?, sslValidation?, allowSelfSigned? }
+- certificates: { server_ca?, clients? }
 
 ## VS Code Settings
 
@@ -129,6 +136,8 @@ A file named `multimeter.mmt` (with `type: env`) placed at the root of your proj
 1. **Workspace environment loading**: When configured, VS Code will automatically load variables, presets, and certificates from `multimeter.mmt` into workspace storage on project open. Configure the path using `multimeter.workspaceEnvFile` setting (default: `multimeter.mmt` at project root).
 
 2. **Project root imports**: In test and API files, you can use `+/` prefix to import files relative to the project root (where `multimeter.mmt` exists) instead of relative to the current file.
+
+For local example folders or smaller projects, runners also look for the nearest `env.mmt` when no configured `multimeter.mmt` is found. This is useful for keeping example-specific variables and certificates beside the tests that use them.
 
 Example project structure:
 ```

@@ -265,7 +265,7 @@ outputs: record<string, string>
 setenv: record<string, string>
 protocol: http | ws          # optional, inferred from URL
 method: get|post|put|delete|patch|head|options|trace   # HTTP only
-format: json | xml | text    # affects body encoding
+format: json | xml | xmle | text    # affects body encoding
 url: string                  # may include query string
 headers: record<string,string>
 query: record<string,string>
@@ -321,7 +321,7 @@ description: string
 import: record<string,string>   # alias -> path (CSV or .mmt)
 inputs: record<string, primitive>
 outputs: record<string, primitive>
-metrics?: { repeat?: string|number, threads?: number, duration?: string, rampup?: string }
+loadtest?: { threads?: number, repeat?: string|number, rampup?: string }
 steps?: Step[]               # sequential when at root
 stages?: Array<{            # optional staged/parallel model
   id: string
@@ -343,6 +343,7 @@ Where a Step is one of:
 - js: string
 - print: string
 - set | var | const | let: record<string, any>
+- data: string
 - setenv: record<string, any>
 - run: string
 
