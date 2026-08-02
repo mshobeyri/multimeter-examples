@@ -13,9 +13,6 @@
     <a href="https://github.com/mshobeyri/multimeter/blob/main/LICENSE.md">
       <img src="https://img.shields.io/badge/license-BSL-green" alt="License"/>
     </a>
-    <a href="https://github.com/mshobeyri/multimeter/stargazers">
-      <img src="https://img.shields.io/github/stars/mshobeyri/multimeter?style=social" alt="GitHub Stars"/>
-    </a>
   </p>
   <p>
     <a href="https://mmt.dev/demos"><img src="res/demo.png" alt="Demo" width="16" height="16" style="vertical-align: text-bottom;"/> View Demo</a>
@@ -26,7 +23,7 @@
   </p>
 </div>
 
-<img src="res/api.gif" alt="Multimeter in action" style="max-width: 100%; height: auto;" />
+<img src="res/demo.gif" alt="Multimeter in action" style="max-width: 100%; height: auto;" />
 
 
 
@@ -40,7 +37,7 @@ Grow into tests, suites, mocks, reports, auto-generated documentation, and CI wo
 
 All in the same tool. No migration required.
 
-## 😩 Tired of fighting your API testing tools?
+## 🫤 Tired of fighting your API testing tools?
 
 
 ### Coming from Postman?
